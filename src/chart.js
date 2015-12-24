@@ -1,5 +1,5 @@
 angular.module('ui.chart', [])
-  .directive('uiChart', function () {
+  .directive('uiChart', ['$window', function ($window) {
     return {
       restrict: 'EACM',
       template: '<div></div>',
@@ -30,6 +30,10 @@ angular.module('ui.chart', [])
         scope.$watch(attrs.chartOptions, function () {
           renderChart();
         });
+
+        $($window).on('resize', function (event) {
+          renderChart();
+        });
       }
     };
-  });
+  }]);
